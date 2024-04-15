@@ -1,0 +1,26 @@
+# @package _global_
+
+defaults:
+  - override /model/network: Late_fusion_ViT
+  - override /dataset/train_transform: Identity 
+  - override /dataset/test_transform: Identity
+
+model:
+  name: "ViT_Late_fusion"
+  optimizer:
+    lr: 2e-3
+  network:
+    mlp:
+      instance:
+        initial_dim: 256
+
+callbacks:
+  early_stopping:
+    monitor: "val/F1_Score_macro"
+    mode: "max"
+    patience: 10
+
+modalities:
+  - "aerial"
+  - "s1-mono"
+  - "s2-mono"

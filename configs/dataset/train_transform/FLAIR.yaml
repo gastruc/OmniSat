@@ -1,0 +1,3 @@
+_target_: data.transforms.transform.Transform
+size: 500
+p: 0.0

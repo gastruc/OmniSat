@@ -1,0 +1,5 @@
+_target_: src.models.metrics.metrics.MetricsMultiModal
+modalities: ${modalities}
+num_classes: ${dataset.num_classes}
+save_results: False
+get_classes: True

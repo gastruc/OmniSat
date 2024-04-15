@@ -1,0 +1,17 @@
+_target_: models.networks.encoder.LTAE.LTAE
+modalities: ${modalities}
+n_head: 16
+d_k: 8
+mlp:
+  - 256
+  - 512
+mlp_in:
+  - 32
+  - 128
+  - 256
+dropout: 0.2
+T: 367
+in_norm: True
+return_att: False
+positional_encoding: True
+output_dim: 256

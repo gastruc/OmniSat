@@ -1,0 +1,24 @@
+# @package _global_
+
+defaults:
+  - override /model/network: MAEOmni
+  - override /model/network/encoder: Omni
+  - override /model/train_metrics: no_metrics
+  - override /model/val_metrics: metrics_contrastif
+  - override /model/test_metrics: metrics_contrastif
+  - override /model/loss: OmniSAT
+
+model:
+  name: "OmniSAT_no_index_bypass"
+  network:
+    decoder:
+      projectors:
+        aerial: 
+          _target_: models.networks.decoders.DecoderDeconvNoIndicesAerial
+  optimizer:
+    lr: 1e-4
+
+modalities:
+  - "aerial"
+  - "s2"
+  - "s1-asc"

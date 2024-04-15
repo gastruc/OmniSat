@@ -1,0 +1,37 @@
+# @package _global_
+
+defaults:
+  - override /dataset: Pastis
+  - override /model/network/encoder: Omni_Pastis
+
+model:
+  name: "Omni_MM"
+  optimizer:
+    lr: 2e-4
+  network:
+    instance:
+      omni: True
+      encoder:
+        num_patches: 1024
+        projectors:
+          s1-asc:
+            in_channels: 3
+          aerial:
+            in_chans: 3
+    mlp:
+      instance:
+        initial_dim: ${model.network.encoder.embed_dim}
+        hidden_dim: []
+  loss:
+    patch_size: 10
+
+callbacks:
+  early_stopping:
+    monitor: "val/F1_Score_macro"
+    mode: "max"
+    patience: 10
+
+modalities:
+  - "aerial"
+  - "s2"
+  - "s1-asc"

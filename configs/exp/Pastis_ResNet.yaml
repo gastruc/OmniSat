@@ -1,0 +1,20 @@
+# @package _global_
+
+defaults:
+  - override /dataset: Pastis
+  - override /model/network/encoder: ResNet
+  - override /model/network/mlp: identity
+
+model:
+  name: "ResNet_Aerial"
+  optimizer:
+    lr: 2e-4
+
+callbacks:
+  early_stopping:
+    monitor: "val/F1_Score_macro"
+    mode: "max"
+    patience: 10
+
+modalities:
+  - "aerial"

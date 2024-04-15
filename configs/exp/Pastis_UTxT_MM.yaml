@@ -1,0 +1,26 @@
+# @package _global_
+
+defaults:
+  - override /dataset: Pastis
+  - override /model/network: utxt_classif_pastis
+  - override /model/network/encoder: utxt_pastis
+  - override /model/train_metrics: metrics_multi
+  - override /model/val_metrics: metrics_multi
+  - override /model/test_metrics: metrics_multi_quali
+  - override /model/loss: utxt_classif
+
+model:
+  name: "UTxT_MM"
+  optimizer:
+    lr: 0.001
+
+callbacks:
+  early_stopping:
+    monitor: "val/F1_Score_macro"
+    mode: "min"
+    patience: 30
+
+modalities:
+  - "aerial"
+  - "s2"
+  - "s1-asc"

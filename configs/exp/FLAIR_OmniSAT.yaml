@@ -1,0 +1,30 @@
+# @package _global_
+
+defaults:
+  - override /dataset: FLAIR
+  - override /model/network: MAEOmni
+  - override /model/network/encoder: Omni
+  - override /model/train_metrics: no_metrics
+  - override /model/val_metrics: metrics_contrastif
+  - override /model/test_metrics: metrics_contrastif
+  - override /model/loss: OmniSAT
+
+model:
+  name: "OmniSAT"
+  network:
+    instance:
+      encoder:
+        num_patches: 100
+        projectors:
+          aerial:
+            in_chans: 5
+      decoder:
+        projectors:
+          aerial:
+            in_channels: 5
+  optimizer:
+    lr: 1e-4
+
+modalities:
+  - "aerial"
+  - "s2"

@@ -1,0 +1,27 @@
+defaults:
+  - mlp: mlp
+
+instance:
+  _target_: models.networks.Late_fusion.Late_fusion
+  modalities: ${modalities}
+  mlp: ${model.network.mlp}
+  encoder:
+    aerial:
+      _target_: models.networks.encoder.ResNet50.ResNet50Classifier
+      modalities: ['aerial']
+      num_classes: 128
+      reduce: False
+    s2-mono:
+      _target_: models.networks.encoder.MLP.FullyConnectedNetwork
+      input_size: 6
+      n_bands: 12
+      p_drop: 0.3
+      n_class: 64
+      modalities: ["s2-mono"]
+    s1-mono:
+      _target_: models.networks.encoder.MLP.FullyConnectedNetwork
+      input_size: 6
+      n_bands: 3
+      p_drop: 0.3
+      n_class: 64
+      modalities: ["s1-mono"]

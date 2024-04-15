@@ -1,0 +1,23 @@
+# @package _global_
+
+defaults:
+  - override /model/network/encoder: ViT_s
+  - override /model/network/mlp: identity
+
+model:
+  name: "ViT_S2"
+  network:
+    encoder:
+      in_chans: 12
+      output_dim: 15
+  optimizer:
+    lr: 0.001
+
+callbacks:
+  early_stopping:
+    monitor: "val/F1_Score_macro"
+    mode: "max"
+    patience: 10
+
+modalities:
+  - "s2-mono"

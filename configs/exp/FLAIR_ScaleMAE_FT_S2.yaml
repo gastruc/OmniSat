@@ -1,0 +1,41 @@
+# @package _global_
+
+defaults:
+  - override /dataset: FLAIR
+  - override /model/network: Fine_tuning_MAE
+  - override /dataset/train_transform: MAE
+  - override /dataset/test_transform: MAE
+
+model:
+  name: "ScaleMAE_FineTuning_S2"
+  optimizer:
+    lr: 1e-3
+  network:
+    instance:
+      path: ${paths.log_dir}/FLAIR_ScaleMAE_S2/checkpoints/last.ckpt
+      encoder: 
+        _target_: models.networks.encoder.ScaleViT.ScaleVitEncoder
+        patch_size: 8
+        in_chans: 10
+        embed_dim: 384
+        depth: 12
+        num_heads: 16
+        mlp_ratio: 4.
+        channel_groups: [[0, 1, 2, 6], [3, 4, 5, 7], [8, 9]]
+        channel_group_gsds: [10, 20, 20]
+        img_size: 48
+
+dataset:
+  train_transform:
+    size: 48
+  test_transform:
+    size: 48
+
+callbacks:
+  early_stopping:
+    monitor: "val/F1_Score_macro"
+    mode: "max"
+    patience: 10
+
+modalities:
+  - "s2-median"

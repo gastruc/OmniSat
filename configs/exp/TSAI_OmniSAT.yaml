@@ -1,0 +1,21 @@
+# @package _global_
+
+defaults:
+  - override /model/network: MAEOmni
+  - override /model/network/encoder: Omni
+  - override /model/train_metrics: no_metrics
+  - override /model/val_metrics: metrics_contrastif
+  - override /model/test_metrics: metrics_contrastif
+  - override /model/loss: OmniSAT
+
+dataset:
+  mono_strict: True
+model:
+  name: "OmniSAT-mono"
+  optimizer:
+    lr: 1e-4
+
+modalities:
+  - "aerial"
+  - "s2-mono"
+  - "s1-mono"

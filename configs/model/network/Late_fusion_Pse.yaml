@@ -1,0 +1,52 @@
+defaults:
+  - mlp: mlp
+
+instance:
+  _target_: models.networks.Late_fusion.Late_fusion
+  modalities: ${modalities}
+  mlp: ${model.network.mlp}
+  encoder:
+    aerial:
+      _target_: models.networks.encoder.ResNet50.ResNet50Classifier
+      modalities: ["aerial"]
+      num_classes: 128
+    s2-mono:
+      _target_: models.networks.encoder.Pse.Pse
+      modalities: ["s2-mono"]
+      mlp1:
+        - 32
+        - 64
+      pooling: 'mean_std'
+      mlp2:
+        - 128
+        - 64
+      with_extra: False
+      extra_size: 0
+      n_head: 4
+      d_k: 32
+      mlp3: 
+        - 256
+      output_dim: 128
+      dropout: 0.2
+      len_max_seq: 258
+      T: 367
+    s1-mono:
+      _target_: models.networks.encoder.Pse.Pse
+      modalities: ["s1-mono"]
+      mlp1:
+        - 32
+        - 64
+      pooling: 'mean_std'
+      mlp2:
+        - 128
+        - 64
+      with_extra: False
+      extra_size: 0
+      n_head: 4
+      d_k: 32
+      mlp3: 
+        - 256
+      output_dim: 128
+      dropout: 0.2
+      len_max_seq: 258
+      T: 367

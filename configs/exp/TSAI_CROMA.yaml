@@ -1,0 +1,20 @@
+# @package _global_
+
+defaults:
+  - override /model/network: CROMA
+  - override /dataset/train_transform: CROMA
+  - override /dataset/test_transform: CROMA
+  - override /model: Croma
+
+model:
+  name: "CROMA"
+  optimizer:
+    lr: 2e-5
+  network:
+    instance:
+      in_chans_radar: 3
+      in_chans_optical: 12
+
+modalities:
+  - "s2-mono"
+  - "s1-mono"

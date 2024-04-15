@@ -1,0 +1,30 @@
+# @package _global_
+
+defaults:
+  - override /dataset: Pastis
+  - override /model/network: Fine_tuning
+  - override /model/network/encoder: Omni_Pastis
+
+model:
+  name: "OmniSAT_FineTuning_S2"
+  optimizer:
+    lr: 2e-4
+  network:
+    instance:
+      path: ${paths.log_dir}/PASTIS-R_OmniSAT/checkpoints/last.ckpt
+      encoder:
+        num_patches: 1024
+        projectors:
+          s1-asc:
+            in_channels: 3
+          aerial:
+            in_chans: 3
+
+callbacks:
+  early_stopping:
+    monitor: "val/F1_Score_macro"
+    mode: "max"
+    patience: 10
+
+modalities:
+  - "s2"

@@ -1,0 +1,26 @@
+# @package _global_
+
+defaults:
+  - override /dataset: Pastis
+  - override /model/network: Fine_tuning_croma
+  - override /dataset/train_transform: CROMA
+  - override /dataset/test_transform: CROMA
+
+model:
+  name: "Croma_FineTuning_S1"
+  optimizer:
+    lr: 2e-5
+  network:
+    instance:
+      pretrained_path: ${paths.log_dir}/PASTIS-R_CROMA/checkpoints/last.ckpt
+      modality: 'SAR'
+      in_c_sar: 12
+
+callbacks:
+  early_stopping:
+    monitor: "val/F1_Score_macro"
+    mode: "max"
+    patience: 10
+
+modalities:
+  - "s1-4season-median"

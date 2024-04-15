@@ -1,0 +1,18 @@
+# @package _global_
+
+defaults:
+  - override /model/network: Contrastive
+  - override /model/train_metrics: no_metrics
+  - override /model/val_metrics: metrics_contrastif
+  - override /model/test_metrics: metrics_contrastif
+  - override /model/loss: contrastive
+
+model:
+  name: "OmniSAT_only_contrastive"
+  optimizer:
+    lr: 1e-4
+
+modalities:
+  - "aerial"
+  - "s2"
+  - "s1-asc"

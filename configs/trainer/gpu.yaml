@@ -1,0 +1,8 @@
+defaults:
+  - default.yaml
+
+trainer:
+  accelerator: gpu
+  devices: ${trainer.devices}
+
+devices: 3

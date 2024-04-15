@@ -1,0 +1,6 @@
+_target_: models.losses.Losses
+mix: {
+  mae-loss : 1.0,
+}
+modalities: ${modalities}
+patch_size: 50

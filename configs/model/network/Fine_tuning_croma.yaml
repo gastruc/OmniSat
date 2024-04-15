@@ -1,0 +1,10 @@
+instance:
+  _target_: models.networks.encoder.Croma_ViT.PretrainedCROMA
+  pretrained_path: 'CROMA_base.pt'
+  size: 'base'
+  modality: 'both'
+  image_resolution: 120
+  num_classes: ${dataset.num_classes}
+  in_c_sar: 2
+  in_c_opt: 12
+  modalities: ${modalities}

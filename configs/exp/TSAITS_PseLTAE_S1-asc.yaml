@@ -1,0 +1,15 @@
+# @package _global_
+
+model:
+  name: "PseLTAE_S1-asc"
+  optimizer:
+    lr: 2e-3
+
+callbacks:
+  early_stopping:
+    monitor: "val/F1_Score_macro"
+    mode: "max"
+    patience: 10
+
+modalities:
+  - "s1-asc"

@@ -1,0 +1,54 @@
+defaults:
+  - mlp: mlp
+
+instance:
+  _target_: models.networks.Late_fusion.Late_fusion
+  modalities: ${modalities}
+  mlp: ${model.network.mlp}
+  encoder:
+    aerial:
+      _target_: models.networks.Fine_tuning_MAE.Fine
+      path: ${paths.log_dir}/FLAIR_Aerial_ScaleMAE/checkpoints/last.ckpt
+      encoder: 
+        _target_: models.networks.encoder.ScaleViT.ScaleVitEncoder
+        img_size: 224
+        patch_size: 8
+        channel_groups: [[0,1,2,3,4]]
+        in_chans: 5
+        channel_group_gsds: [0.1]
+        embed_dim: 384
+        depth: 12
+        num_heads: 16
+        mlp_ratio: 4.
+        modalities: ["aerial"]
+      output_size: 384
+      inter_dim: []
+      p_drop: 0.2
+      freeze: False
+      n_class: 128
+      modalities: ["aerial"]
+      last_block: False
+      pooling_method: 'token'
+    s2-4season-median:
+      _target_: models.networks.Fine_tuning_MAE.Fine
+      path: ${paths.log_dir}/FLAIR_S2_4s_ScaleMAE/checkpoints/last.ckpt
+      encoder: 
+        _target_: models.networks.encoder.ScaleViT.ScaleVitEncoder
+        img_size: 48
+        patch_size: 8
+        channel_groups: [[0, 1, 2, 6], [3, 4, 5, 7], [8, 9], [10, 11, 12, 16], [13, 14, 15, 17], [18, 19], [20, 21, 22, 26], [23, 24, 25, 27], [28, 29], [30, 31, 32, 36], [33, 34, 35, 37], [38, 39]]
+        channel_group_gsds: [10, 20, 20, 10, 20, 20, 10, 20, 20, 10, 20, 20]
+        in_chans: 40
+        embed_dim: 384
+        depth: 12
+        num_heads: 16
+        mlp_ratio: 4.
+        modalities: ["s2-4season-median"]
+      output_size: 384
+      inter_dim: []
+      p_drop: 0.2
+      freeze: False
+      n_class: 128
+      modalities: ["s2-4season-median"]
+      last_block: False
+      pooling_method: 'token'

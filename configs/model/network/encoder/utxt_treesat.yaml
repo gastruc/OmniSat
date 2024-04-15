@@ -1,0 +1,31 @@
+_target_: models.networks.encoder.txt_model.TimeTexture_flair
+
+modalities: ${modalities}
+segsem: False
+
+#Fusion
+sat_patch_size: 6 # in [8,112] and multiple of 8 
+drop_utae_modality: 0.0 # 1 = dropping U-TAE branch
+
+# Inputs
+encoder_weights: "imagenet" #imagenet or None
+num_channels_aerial: 4
+num_channels_sat: 10 
+num_channels_s1: 2
+
+# UTAE Model : copier de l'autre yaml UTAE
+encoder_widths: [64, 64, 128]
+decoder_widths: [64, 64, 128]
+out_conv: [32, 20] # For Treesat 
+str_conv_k: 2
+str_conv_s: 2
+str_conv_p: 1
+agg_mode: "att_group"
+encoder_norm: "group"
+n_head: 16
+d_model: 256
+d_k: 4
+pad_value: 0.
+padding_mode: "reflect"
+
+remove_decoder_vhr: False

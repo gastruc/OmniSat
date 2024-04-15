@@ -1,0 +1,30 @@
+# @package _global_
+
+defaults:
+  - override /dataset: Pastis
+  - override /model/network: MAEOmni
+  - override /model/network/encoder: Omni_Pastis
+  - override /model/network/decoder: Omni_Pastis
+  - override /model/train_metrics: no_metrics
+  - override /model/val_metrics: metrics_contrastif
+  - override /model/test_metrics: metrics_contrastif
+  - override /model/loss: OmniSAT_pastis
+
+model:
+  name: "OmniSAT"
+  network:
+    instance:
+      encoder:
+        num_patches: 1024
+        projectors:
+          s1-asc:
+            in_channels: 3
+          aerial:
+            in_chans: 3
+  optimizer:
+    lr: 1e-4
+
+modalities:
+  - "aerial"
+  - "s2"
+  - "s1-asc"

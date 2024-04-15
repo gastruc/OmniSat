@@ -1,0 +1,30 @@
+# @package _global_
+
+defaults:
+  - override /dataset: TreeSAT
+  - override /model/network: utxt_classif_treesat
+  - override /model/network/encoder: utxt_treesat
+  - override /model/train_metrics: metrics_multi
+  - override /model/val_metrics: metrics_multi
+  - override /model/test_metrics: metrics_multi_quali
+  - override /model/loss: utxt_classif
+
+dataset:
+  train_transform:
+    size: 288
+  test_transform:
+    size: 288
+
+model:
+  name: "UTxT_S1-asc"
+  optimizer:
+    lr: 0.001
+
+callbacks:
+  early_stopping:
+    monitor: "val/F1_Score_macro"
+    mode: "max"
+    patience: 10
+
+modalities:
+  - "s1-asc"

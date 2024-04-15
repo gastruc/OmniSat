@@ -1,0 +1,28 @@
+# @package _global_
+
+defaults:
+  - override /model/network: Late_fusion_PseTAE
+
+model:
+  name: "PseLTAE_Late_fusion"
+  optimizer:
+    lr: 2e-3
+  network:
+    instance:
+      encoder:
+        aerial:
+          reduce: True
+    mlp:
+      instance:
+        initial_dim: 384
+
+callbacks:
+  early_stopping:
+    monitor: "val/F1_Score_macro"
+    mode: "max"
+    patience: 10
+
+modalities:
+  - "aerial"
+  - "s2"
+  - "s1-asc"

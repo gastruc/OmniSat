@@ -1,0 +1,9 @@
+defaults:
+  - encoder: utxt
+
+instance:
+  _target_: models.networks.UTxT_classif.Train_UTxT_classif
+  encoder: ${model.network.encoder}
+  output_size: {"aerial": 16, "s2": 64, "s1-asc": 64}
+  num_classes: ${dataset.num_classes}
+  modalities: ${modalities}

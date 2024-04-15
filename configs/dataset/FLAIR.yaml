@@ -1,0 +1,46 @@
+defaults:
+  - train_transform: FLAIR
+  - test_transform: FLAIR
+  - _self_
+
+name: FLAIR
+global_batch_size: 2048
+num_classes: 13
+sat_patch_size: 40
+crop_s2: True
+
+train_dataset:
+  _partial_: true
+  _target_: data.FLAIR.FLAIR
+  path: ${data_dir}
+  split: train
+  transform: ${dataset.train_transform}
+  num_classes: ${dataset.num_classes}
+  crop_s2: ${dataset.crop_s2}
+  partition: ${partition}
+  modalities: ${modalities}
+  sat_patch_size: ${dataset.sat_patch_size}
+
+val_dataset:
+  _partial_: true
+  _target_: data.FLAIR.FLAIR
+  path: ${data_dir}
+  split: val
+  transform: ${dataset.test_transform}
+  num_classes: ${dataset.num_classes}
+  crop_s2: ${dataset.crop_s2}
+  partition: 1.0
+  modalities: ${modalities}
+  sat_patch_size: ${dataset.sat_patch_size}
+
+test_dataset:
+  _partial_: true
+  _target_: data.FLAIR.FLAIR
+  path: ${data_dir}
+  split: test
+  transform: ${dataset.test_transform}
+  num_classes: ${dataset.num_classes}
+  crop_s2: ${dataset.crop_s2}
+  partition: 1.0
+  modalities: ${modalities}
+  sat_patch_size: ${dataset.sat_patch_size}

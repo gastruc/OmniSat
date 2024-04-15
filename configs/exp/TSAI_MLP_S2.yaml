@@ -1,0 +1,22 @@
+# @package _global_
+
+defaults:
+  - override /model/network/encoder: MLP
+  - override /model/network/mlp: identity
+
+model:
+  name: "MLP_S2"
+  network:
+    encoder:
+      n_bands: 12
+  optimizer:
+    lr: 0.001
+
+callbacks:
+  early_stopping:
+    monitor: "val/F1_Score_macro"
+    mode: "max"
+    patience: 10
+
+modalities:
+  - "s2-mono"

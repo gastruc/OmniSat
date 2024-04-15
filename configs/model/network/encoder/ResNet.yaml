@@ -1,0 +1,4 @@
+_target_: models.networks.encoder.ResNet50.ResNet50Classifier
+modalities: ${modalities}
+num_classes: ${dataset.num_classes}
+reduce: False

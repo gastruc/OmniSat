@@ -1,0 +1,24 @@
+instance:
+  _target_: models.networks.Fine_tuning_MAE.Fine
+  encoder: 
+    _target_: models.networks.encoder.SatViT.SatViTEncoder
+    img_size: 224
+    patch_size: 8
+    #spatial_mask: False
+    channel_groups: [[0,1,2,3]]
+    #channel_groups=((0, 1, 2, 6), (3, 4, 5, 7), (8, 9)),
+    #channel_embed: 256
+    embed_dim: 384
+    depth: 12
+    num_heads: 16
+    mlp_ratio: 4.
+    modalities: ${modalities}
+  path: ''
+  output_size: ${model.network.instance.encoder.embed_dim}
+  inter_dim: []
+  p_drop: 0.2
+  freeze: False
+  n_class: ${dataset.num_classes}
+  modalities: ${modalities}
+  last_block: False
+  pooling_method: 'token'

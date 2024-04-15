@@ -1,0 +1,19 @@
+# @package _global_
+
+defaults:
+  - override /dataset: Pastis
+  - override /model/network: ScaleMAE
+  - override /dataset/train_transform: MAE
+  - override /dataset/test_transform: MAE
+  - override /model: MAE
+
+model:
+  name: "ScaleMAE_Aerial"
+  optimizer:
+    lr: 1e-4
+  network:
+    instance:
+      channel_groups: [[0,1,2]]
+
+modalities:
+  - "aerial"

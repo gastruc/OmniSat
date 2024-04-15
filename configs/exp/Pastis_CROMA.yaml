@@ -1,0 +1,21 @@
+# @package _global_
+
+defaults:
+  - override /dataset: Pastis
+  - override /model/network: CROMA
+  - override /dataset/train_transform: CROMA
+  - override /dataset/test_transform: CROMA
+  - override /model: Croma
+
+model:
+  name: "CROMA"
+  optimizer:
+    lr: 2e-4
+  network:
+    instance:
+      in_chans_radar: 12
+      in_chans_optical: 40
+
+modalities:
+  - "s2-4season-median"
+  - "s1-4season-median"

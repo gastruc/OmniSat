@@ -1,0 +1,17 @@
+instance:
+  _target_: models.networks.SatMAE.SatMAE
+  img_size: 224
+  patch_size: 8
+  spatial_mask: False
+  channel_groups: [[0,1,2,3]]
+  channel_embed: 256
+  embed_dim: 384
+  depth: 12
+  num_heads: 16
+  decoder_channel_embed: 256
+  decoder_embed_dim: 384
+  decoder_depth: 8
+  decoder_num_heads: 16
+  mlp_ratio: 4.
+  norm_pix_loss: False
+  modalities: ${modalities}

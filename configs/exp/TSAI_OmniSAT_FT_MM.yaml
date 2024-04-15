@@ -1,0 +1,25 @@
+# @package _global_
+
+defaults:
+  - override /model/network: Fine_tuning
+
+dataset:
+  mono_strict: True
+model:
+  name: "OmniSAT-mono_FineTuning_MM"
+  optimizer:
+    lr: 2e-4
+  network:
+    instance:
+      path: ${paths.log_dir}/TreeSat_OmniSAT-mono/checkpoints/last.ckpt
+
+callbacks:
+  early_stopping:
+    monitor: "val/F1_Score_macro"
+    mode: "max"
+    patience: 10
+
+modalities:
+  - "aerial"
+  - "s2-mono"
+  - "s1-mono"    

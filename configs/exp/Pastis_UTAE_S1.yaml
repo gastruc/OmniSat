@@ -1,0 +1,19 @@
+# @package _global_
+
+defaults:
+  - override /dataset: Pastis
+  - override /model/network/encoder: UTAE
+
+model:
+  name: "UTAE_S1"
+  optimizer:
+    lr: 0.001
+
+callbacks:
+  early_stopping:
+    monitor: "val/F1_Score_macro"
+    mode: "max"
+    patience: 10
+
+modalities:
+  - "s1-asc"

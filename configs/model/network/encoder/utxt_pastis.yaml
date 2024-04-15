@@ -1,0 +1,30 @@
+_target_: models.networks.encoder.txt_model.TimeTexture_flair
+
+modalities: ${modalities}
+num_classes: ${dataset.num_classes}
+segsem: False
+
+#Fusion
+sat_patch_size: ${dataset.sat_patch_size} # size from FLAIR 2 baseline
+drop_utae_modality: 0.0 # 1 = dropping U-TAE branch
+
+# Inputs
+encoder_weights: "imagenet" #imagenet or None
+num_channels_aerial: 3
+num_channels_sat: 10
+num_channels_s1: 3 # For PASTIS
+
+# UTAE Model : from FLAIR repo
+encoder_widths: [64,64,128,128] # 1st and last must be equivalent to decoder_widths
+decoder_widths: [64,64,128,128] # 1st and last must be equivalent to encoder_widths
+out_conv: [32, 13]
+str_conv_k: 4
+str_conv_s: 2
+str_conv_p: 1
+agg_mode: "att_group"
+encoder_norm: "group"
+n_head: 16
+d_model: 256
+d_k: 4
+pad_value: 0
+padding_mode: "reflect"

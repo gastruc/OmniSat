@@ -1,0 +1,31 @@
+_target_: models.networks.decoders.DecoderModalities
+modalities: ${modalities}
+projectors:
+  'aerial': 
+    _target_: models.networks.decoders.DecoderDeconvAerialPastis
+    in_channels: 3
+    embed_dim: ${model.network.encoder.embed_dim}
+  's2':
+    _target_: models.networks.decoders.DecoderSentinel
+    in_channels: 160
+    embed_dim: ${model.network.encoder.embed_dim}
+    inter_dim: []
+    T: 734
+  's1-asc':
+    _target_: models.networks.decoders.DecoderSentinel
+    in_channels: 48
+    embed_dim: ${model.network.encoder.embed_dim}
+    inter_dim: []
+    T: 734
+  's1-des':
+    _target_: models.networks.decoders.DecoderSentinel
+    in_channels: 3
+    embed_dim: ${model.network.encoder.embed_dim}
+    inter_dim: []
+    T: 734
+  's1':
+    _target_: models.networks.decoders.DecoderSentinel
+    in_channels: 3
+    embed_dim: ${model.network.encoder.embed_dim}
+    inter_dim: []
+    T: 734

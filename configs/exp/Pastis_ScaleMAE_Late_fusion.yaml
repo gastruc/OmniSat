@@ -1,0 +1,38 @@
+# @package _global_
+
+defaults:
+  - override /dataset: Pastis
+  - override /model/network: Late_fusion_ScaleMAE_Pastis
+  - override /dataset/train_transform: MAE 
+  - override /dataset/test_transform: MAE
+
+model:
+  name: "ScaleMAE_Late_fusion"
+  optimizer:
+    lr: 2e-4
+  network:
+    instance:
+      encoder:
+        aerial:
+          path: ${paths.log_dir}/PASTIS-R_ScaleMAE_Aerial/checkpoints/last.ckpt
+        s2-median:
+          path: ${paths.log_dir}/PASTIS-R_ScaleMAE_S2/checkpoints/last.ckpt
+    mlp:
+      instance:
+        initial_dim: 256
+
+dataset:
+  train_transform:
+    s2_size: 48
+  test_transform:
+    s2_size: 48
+
+callbacks:
+  early_stopping:
+    monitor: "val/F1_Score_macro"
+    mode: "max"
+    patience: 10
+
+modalities:
+  - "aerial"
+  - "s2-median"

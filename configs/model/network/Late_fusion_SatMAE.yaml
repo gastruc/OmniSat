@@ -1,0 +1,50 @@
+defaults:
+  - mlp: mlp
+
+instance:
+  _target_: models.networks.Late_fusion.Late_fusion
+  modalities: ${modalities}
+  mlp: ${model.network.mlp}
+  encoder:
+    aerial:
+      _target_: models.networks.Fine_tuning_MAE.Fine
+      encoder: 
+        _target_: models.networks.encoder.SatViT.SatViTEncoder
+        img_size: 224
+        patch_size: 8
+        channel_groups: [[0,1,2,3]]
+        embed_dim: 384
+        depth: 12
+        num_heads: 16
+        mlp_ratio: 4.
+        modalities: ["aerial"]
+      path: /var/data/gastruc/logs/TreeSAT_SatMAE_Aerial_scaled/checkpoints/epoch_269.ckpt
+      output_size: 384
+      inter_dim: []
+      p_drop: 0.2
+      freeze: False
+      n_class: 128
+      modalities: ["aerial"]
+      last_block: False
+      pooling_method: 'token'
+    s2-mono:
+      _target_: models.networks.Fine_tuning_MAE.Fine
+      encoder: 
+        _target_: models.networks.encoder.SatViT.SatViTEncoder
+        img_size: 224
+        patch_size: 8
+        channel_groups: [[0, 1, 2, 6], [3, 4, 5, 7], [8, 9]]
+        embed_dim: 384
+        depth: 12
+        num_heads: 16
+        mlp_ratio: 4.
+        modalities: ["s2-mono"]
+      path: /var/data/gastruc/logs/TreeSAT_SatMAE_scaled_S2/checkpoints/epoch_156.ckpt
+      output_size: 384
+      inter_dim: []
+      p_drop: 0.2
+      freeze: False
+      n_class: 128
+      modalities: ["s2-mono"]
+      last_block: False
+      pooling_method: 'token'

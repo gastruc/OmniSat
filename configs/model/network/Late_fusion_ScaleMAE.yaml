@@ -1,0 +1,31 @@
+defaults:
+  - mlp: mlp
+
+instance:
+  _target_: models.networks.Late_fusion.Late_fusion
+  modalities: ${modalities}
+  mlp: ${model.network.mlp}
+  encoder:
+    aerial:
+      _target_: models.networks.Fine_tuning_MAE.Fine
+      path: ${paths.log_dir}/TreeSat_ScaleMAE_Aerial/checkpoints/last.ckpt
+      encoder: 
+        _target_: models.networks.encoder.ScaleViT.ScaleVitEncoder
+        img_size: 224
+        patch_size: 8
+        channel_groups: [[0,1,2,3]]
+        in_chans: 4
+        channel_group_gsds: [0.1]
+        embed_dim: 384
+        depth: 12
+        num_heads: 16
+        mlp_ratio: 4.
+        modalities: ["aerial"]
+      output_size: 384
+      inter_dim: []
+      p_drop: 0.2
+      freeze: False
+      n_class: 128
+      modalities: ["aerial"]
+      last_block: False
+      pooling_method: 'token'

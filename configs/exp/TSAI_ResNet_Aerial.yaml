@@ -1,0 +1,22 @@
+# @package _global_
+
+defaults:
+  - override /model/network/encoder: ResNet
+  - override /model/network/mlp: identity
+
+model:
+  name: "ResNet_Aerial"
+  network:
+    encoder:
+      reduce: True
+  optimizer:
+    lr: 0.001
+
+callbacks:
+  early_stopping:
+    monitor: "val/F1_Score_macro"
+    mode: "max"
+    patience: 10
+
+modalities:
+  - "aerial"

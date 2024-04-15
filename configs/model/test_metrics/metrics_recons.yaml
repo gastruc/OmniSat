@@ -1,0 +1,4 @@
+_target_: src.models.metrics.metrics.NoMetrics
+save_reconstructs: True
+save_dir: ${paths.output_dir}/recons/
+modalities: ${modalities}

@@ -1,0 +1,12 @@
+instance:
+  _target_: models.networks.Croma.CROMA
+  patch_size: 8
+  encoder_dim: 384
+  encoder_layers: 12
+  attention_heads: 16
+  decoder_dim: 256
+  decoder_layers: 1
+  num_patches: 225
+  in_chans_radar: 3
+  in_chans_optical: 12
+  modalities: ${modalities}

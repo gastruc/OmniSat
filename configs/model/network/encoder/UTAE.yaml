@@ -1,0 +1,18 @@
+_target_: models.networks.encoder.UTAE.UTAE
+modalities: ${modalities}
+encoder_widths: [64, 32, 32]
+decoder_widths: [32, 32, 32]
+out_conv: [32, 64, 128]
+str_conv_k: 2
+str_conv_s: 2
+str_conv_p: 1
+agg_mode: "att_group"
+encoder_norm: "group"
+n_head: 16
+d_model: 256
+d_k: 4
+encoder: False
+return_maps: False
+pad_value: 0.
+padding_mode: "reflect"
+output_dim: 128

@@ -1,0 +1,24 @@
+defaults:
+  - network: TreeSAT_monomodal
+  - _self_
+
+name: PseTae
+
+optimizer:
+  _target_: torch.optim.Adam
+  _partial_: true
+  lr: 0.001
+  weight_decay: 0.0
+
+scheduler:
+  _target_: torch.optim.lr_scheduler.ReduceLROnPlateau
+  _partial_: true
+  mode: min
+  factor: 0.1
+  patience: 10
+
+instance:
+  _target_: src.models.module_MAE.Module
+  optimizer: ${model.optimizer}
+  scheduler: ${model.scheduler}
+  network: ${model.network}

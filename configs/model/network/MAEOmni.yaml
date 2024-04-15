@@ -1,0 +1,10 @@
+defaults:
+  - encoder: Omni
+  - decoder: Omni
+
+instance:
+  _target_: models.networks.MAEOmni.MAEOmni
+  encoder: ${model.network.encoder}
+  decoder: ${model.network.decoder}
+  embed_dim: ${model.network.encoder.embed_dim}
+  

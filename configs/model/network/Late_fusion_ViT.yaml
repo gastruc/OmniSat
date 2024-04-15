@@ -1,0 +1,65 @@
+defaults:
+  - mlp: mlp
+
+instance:
+  _target_: models.networks.Late_fusion.Late_fusion
+  modalities: ${modalities}
+  mlp: ${model.network.mlp}
+  encoder:
+    aerial:
+      _target_: models.networks.encoder.ViT.VisionTransformer
+      modalities: ["aerial"]
+      img_size: 300
+      in_chans: 4
+      patch_size: 50
+      embed_dim: 256
+      depth: 12
+      num_heads: 8
+      mlp_ratio: 4.
+      global_pool: 'avg'
+      output_dim: 128
+      res: True
+      gp_norm: 4
+      drop_rate: 0.2
+      pos_drop_rate: 0.2
+      patch_drop_rate: 0.2
+      attn_drop_rate: 0.2
+      drop_path_rate: 0.2
+    s2-mono:
+      _target_: models.networks.encoder.ViT.VisionTransformer
+      modalities: ["s2-mono"]
+      img_size: 6
+      in_chans: 12
+      patch_size: 1
+      embed_dim: 128
+      depth: 4
+      num_heads: 8
+      mlp_ratio: 4.
+      global_pool: 'max'
+      output_dim: 64
+      res: False
+      gp_norm: 4
+      drop_rate: 0.2
+      pos_drop_rate: 0.2
+      patch_drop_rate: 0.2
+      attn_drop_rate: 0.2
+      drop_path_rate: 0.2
+    s1-mono:
+      _target_: models.networks.encoder.ViT.VisionTransformer
+      modalities: ["s1-mono"]
+      img_size: 6
+      in_chans: 3
+      patch_size: 1
+      embed_dim: 128
+      depth: 4
+      num_heads: 8
+      mlp_ratio: 4.
+      global_pool: 'max'
+      output_dim: 64
+      res: False
+      gp_norm: 4
+      drop_rate: 0.2
+      pos_drop_rate: 0.2
+      patch_drop_rate: 0.2
+      attn_drop_rate: 0.2
+      drop_path_rate: 0.2

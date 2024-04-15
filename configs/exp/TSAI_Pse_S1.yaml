@@ -1,0 +1,19 @@
+# @package _global_
+
+defaults:
+  - override /model/network/encoder: Pse
+  - override /model/network/mlp: identity
+
+model:
+  name: "Pse_S1"
+  optimizer:
+    lr: 0.001
+
+callbacks:
+  early_stopping:
+    monitor: "val/F1_Score_macro"
+    mode: "max"
+    patience: 10
+
+modalities:
+  - "s1-mono"

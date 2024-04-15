@@ -1,0 +1,96 @@
+_target_: models.networks.encoder.Omni.OmniModule
+modalities: ${modalities}
+projectors:
+  aerial:
+    _target_: models.networks.encoder.utils.patch_embeddings.PatchEmbed
+    patch_size: 50
+    in_chans: 4
+    embed_dim: 256
+    bias: ${model.network.encoder.pre_norm}
+    res: True
+    gp_norm: 4
+  s2:
+    _target_: models.networks.encoder.utils.ltae.LTAE2d
+    in_channels: 10
+    n_head: 16
+    d_k: 8
+    mlp:
+      - 256
+      - 512
+      - 256
+    mlp_in:
+      - 32
+      - 128
+      - 256
+    dropout: 0.2
+    T: 367
+    in_norm: True
+    return_att: True
+    positional_encoding: True
+  s1-asc:
+    _target_: models.networks.encoder.utils.ltae.LTAE2d
+    in_channels: 2
+    n_head: 16
+    d_k: 8
+    mlp:
+      - 256
+      - 512
+      - 256
+    mlp_in:
+      - 32
+      - 128
+      - 256
+    dropout: 0.2
+    T: 367
+    in_norm: False
+    return_att: True
+    positional_encoding: True
+  s1-des:
+    _target_: models.networks.encoder.utils.ltae.LTAE2d
+    in_channels: 2
+    n_head: 16
+    d_k: 8
+    mlp:
+      - 256
+      - 512
+      - 256
+    mlp_in:
+      - 32
+      - 128
+      - 256
+    dropout: 0.2
+    T: 367
+    in_norm: False
+    return_att: True
+    positional_encoding: True
+  s1:
+    _target_: models.networks.encoder.utils.ltae.LTAE2d
+    in_channels: 2
+    n_head: 16
+    d_k: 8
+    mlp:
+      - 256
+      - 512
+      - 256
+    mlp_in:
+      - 32
+      - 128
+      - 256
+    dropout: 0.2
+    T: 367
+    in_norm: False
+    return_att: True
+    positional_encoding: True
+
+num_patches: 36
+embed_dim: 256
+depth: 6
+num_heads: 16
+mlp_ratio: 4.
+class_token: True
+pre_norm: False
+drop_rate: 0.2
+pos_drop_rate: 0.2
+patch_drop_rate: 0.0
+drop_path_rate: 0.2
+attn_drop_rate: 0.2

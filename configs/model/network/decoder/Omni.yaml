@@ -1,0 +1,41 @@
+_target_: models.networks.decoders.DecoderModalities
+modalities: ${modalities}
+projectors:
+  aerial: 
+    _target_: models.networks.decoders.DecoderDeconvAerial
+    in_channels: 4
+    embed_dim: ${model.network.encoder.embed_dim}
+  s2:
+    _target_: models.networks.decoders.DecoderSentinel
+    in_channels: 10
+    embed_dim: ${model.network.encoder.embed_dim}
+    inter_dim: []
+    T: 367
+  s1-asc:
+    _target_: models.networks.decoders.DecoderSentinel
+    in_channels: 2
+    embed_dim: ${model.network.encoder.embed_dim}
+    inter_dim: []
+    T: 367
+  s1-des:
+    _target_: models.networks.decoders.DecoderSentinel
+    in_channels: 2
+    embed_dim: ${model.network.encoder.embed_dim}
+    inter_dim: []
+    T: 367
+  s1:
+    _target_: models.networks.decoders.DecoderSentinel
+    in_channels: 2
+    embed_dim: ${model.network.encoder.embed_dim}
+    inter_dim: []
+    T: 367
+  s1-mono:
+    _target_: models.networks.decoders.DecoderSentinelMono
+    in_channels: 2
+    embed_dim: ${model.network.encoder.embed_dim}
+    inter_dim: []
+  s2-mono:
+    _target_: models.networks.decoders.DecoderSentinelMono
+    in_channels: 10
+    embed_dim: ${model.network.encoder.embed_dim}
+    inter_dim: []

@@ -1,0 +1,50 @@
+defaults:
+  - mlp: mlp
+
+instance:
+  _target_: models.networks.Late_fusion.Late_fusion
+  modalities: ${modalities}
+  mlp: ${model.network.mlp}
+  encoder:
+    aerial:
+      _target_: models.networks.encoder.ResNet50.ResNet50Classifier
+      modalities: ["aerial"]
+      num_classes: 128
+    s2:
+      _target_: models.networks.encoder.UTAE.UTAE
+      modalities: ["s2"]
+      encoder_widths: [64, 32, 32]
+      decoder_widths: [32, 32, 32]
+      out_conv: [32, 64, 128]
+      str_conv_k: 2
+      str_conv_s: 2
+      str_conv_p: 1
+      agg_mode: "att_group"
+      encoder_norm: "group"
+      n_head: 16
+      d_model: 256
+      d_k: 4
+      encoder: False
+      return_maps: False
+      pad_value: 0.
+      padding_mode: "reflect"
+      output_dim: 128
+    s1-asc:
+      _target_: models.networks.encoder.UTAE.UTAE
+      modalities: ["s1-asc"]
+      encoder_widths: [64, 32, 32]
+      decoder_widths: [32, 32, 32]
+      out_conv: [32, 64, 128]
+      str_conv_k: 2
+      str_conv_s: 2
+      str_conv_p: 1
+      agg_mode: "att_group"
+      encoder_norm: "group"
+      n_head: 16
+      d_model: 256
+      d_k: 4
+      encoder: False
+      return_maps: False
+      pad_value: 0.
+      padding_mode: "reflect"
+      output_dim: 128

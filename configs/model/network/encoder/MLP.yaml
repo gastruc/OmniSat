@@ -1,0 +1,6 @@
+_target_: models.networks.encoder.MLP.FullyConnectedNetwork
+input_size: 6
+n_bands: 12
+p_drop: 0.3
+n_class: 15
+modalities: ${modalities}
