@@ -20,19 +20,29 @@ Official implementation for
 
 ### Abstract
 
-We introduce OmniSat, a novel architecture that exploits the spatial alignment between multiple EO modalities to learn expressive multimodal representations without labels. To demonstrate the advantages of combining modalities of different natures, we augment two existing datasets with new modalities. As demonstrated on three downstream tasks: forestry, land cover classification, and crop mapping. OmniSat can learn rich representations in an unsupervised manner, leading to improved performance in the semi- and fully-supervised settings, even when only one modality is available for inference.
+We introduce OmniSat, a novel architecture that exploits the spatial alignment between multiple EO modalities to learn expressive multimodal representations without labels. We demonstrate the advantages of combining modalities of different natures across three downstream tasks (forestry, land cover classification, and crop mapping), and  propose two augmented datasets with new modalities: PASTIS-HD and TreeSatAI-TS.
+
+<p align="center">
+  <img src="https://github.com/gastruc/OmniSat/assets/1902679/9fc20951-1cac-4891-b67f-53ed5e0675ad" width="500" height="250">
+</p>
 
 ### Datasets
 
-| Dataset name  |             Modalities                   |      Labels         |
-| ------------- | ---------------------------------------- | ------------------- |
-| PASTIS-HD     | **SPOT 6-7 (1m)** + S1/S2 (30-140 / year)| Crop mapping (0.2m) |
-| TreeSatAI-TS  | aerial (0.2m) + **S1/S2 (10-70 / year)** |   forestry (60m)    |
-| FLAIR         |   aerial (0.2m) + S2 (20-114 / year)     |  Land cover (0.2m)  |
+  
+| Dataset name  |             Modalities                   |      Labels         |     Link      
+| ------------- | ---------------------------------------- | ------------------- | ------------------- |
+| PASTIS-HD     | **SPOT 6-7 (1m)** + S1/S2 (30-140 / year)| Crop mapping (0.2m) |    [zenodo](https://zenodo.org/records/10908628)  |
+| TreeSatAI-TS  | Aerial (0.2m) + **S1/S2 (10-70 / year)** |   Forestry (60m)    |   [huggingface](https://huggingface.co/datasets/IGNF/TreeSatAI-Time-Series) |
+| FLAIR         |   aerial (0.2m) + S2 (20-114 / year)     |  Land cover (0.2m)  |  [huggingface](https://huggingface.co/datasets/IGNF/FLAIR) |
+
+
+<p align="center">
+  <img src="https://github.com/gastruc/OmniSat/assets/1902679/289c8ca5-c0fa-4c35-8a91-af827dac0509" width="500" height="250">
+</p>
 
 ### Results
 
-F1 Score results on 100% of the training data with all modalities available:
+We perform experiments withb 100% and 10-20% of labels. See below, the F1 Score results on 100% of the training data with all modalities available:
 
 |   F1 Score    | UT&T | Scale-MAE | OmniSat (no pretraining) | OmniSat (with pretraining) |
 | ------------- | ---- | --------- | ------------------------ | -------------------------- |
@@ -40,6 +50,7 @@ F1 Score results on 100% of the training data with all modalities available:
 | TreeSatAI-TS  | 56.7 |   60.4    |           73.3           |          **74.2**          |
 | FLAIR         | 48.8 |   70.0    |           70.0           |          **73.4**          |
 
+OmniSat also improves performance even when only one modality is available for inference.
 F1 Score results on 100% of the training data with only S2 data available:
 
 |   F1 Score    | UT&T | Scale-MAE | OmniSat (no pretraining) | OmniSat (with pretraining) |
@@ -48,13 +59,15 @@ F1 Score results on 100% of the training data with only S2 data available:
 | TreeSatAI-TS  | 57.0 |   31.5    |           49.7           |          **62.9**          |
 | FLAIR         | 62.0 |   61.0    |         **65.4**         |          **65.4**          |
 
-OmniSat improves performance even when only one modality is available for inference!
+
 
 ### Efficiency
 
 We report the best performance of different models between TreeSatAI and TreeSatAI-TS, with pre-training and fine-tuning using 100% of labels. The area of the markers is proportional to the training time, broken down in pre-training and fine-tuning when applicable
 
-![](Efficiency.png)
+<p align="center">
+   <img src="Efficiency.png" width="350" height="250">
+</p>
 
 ## Project Structure
 
@@ -104,8 +117,6 @@ The directory structure of new project looks like this:
 
 ## Getting the data
 
-
-
 ## 🚀  Quickstart
 
 ```bash
@@ -154,6 +165,18 @@ To run 20% experiments on PASTIS-HD, you have to run
 python src/train_pastis_20.py exp=Pastis_ResNet #to run a ResNet on PASTIS-HD
 #partition parameter does not change anything on PASTIS-HD
 ```
+## Citation
+
+To refer to this work, please cite
+```
+@article{astruc2024omnisat,
+  title={Omni{S}at: {S}elf-Supervised Modality Fusion for {E}arth Observation},
+  author={Astruc, Guillaume and Gonthier, Nicolas and Mallet, Clement and Landrieu, Loic},
+  journal={arXiv preprint arXiv:2404.08351},
+  year={2024}
+}
+```
+
 
 ## Acknowledgements
 - This project was built using [Lightning-Hydra template](https://github.com/ashleve/lightning-hydra-template).
