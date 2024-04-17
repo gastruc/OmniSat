@@ -13,7 +13,7 @@
 Official implementation for
 <br>
 <br>
-[_OmniSat: Self-Supervised Modality Fusion for Earth Observation_](https://arxiv.org)
+[_OmniSat: Self-Supervised Modality Fusion for Earth Observation_](https://arxiv.org/pdf/2404.08351.pdf)
 <br>
 
 ## Description
