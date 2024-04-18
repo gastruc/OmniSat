@@ -41,7 +41,7 @@ We introduce OmniSat, a novel architecture that exploits the spatial alignment b
 
 ### Results
 
-We perform experiments withb 100% and 10-20% of labels. See below, the F1 Score results on 100% of the training data with all modalities available:
+We perform experiments with 100% and 10-20% of labels. See below, the F1 Score results on 100% of the training data with all modalities available:
 
 |   F1 Score    | UT&T | Scale-MAE | OmniSat (no pretraining) | OmniSat (with pretraining) |
 | ------------- | ---- | --------- | ------------------------ | -------------------------- |
