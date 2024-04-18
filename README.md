@@ -10,10 +10,7 @@
 [//]: # ([![Conference]&#40;https://img.shields.io/badge/AnyConference-year-4b44ce.svg&#41;]&#40;https://papers.nips.cc/paper/2020&#41;)
 
 
-Official implementation for
-<br>
-[_OmniSat: Self-Supervised Modality Fusion for Earth Observation_](https://arxiv.org/pdf/2404.08351.pdf)
-<br>
+Official implementation for <br> [_OmniSat: Self-Supervised Modality Fusion for Earth Observation_](https://arxiv.org/pdf/2404.08351.pdf) <br>
 
 ## Description
 
