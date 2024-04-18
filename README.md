@@ -12,7 +12,6 @@
 
 Official implementation for
 <br>
-<br>
 [_OmniSat: Self-Supervised Modality Fusion for Earth Observation_](https://arxiv.org/pdf/2404.08351.pdf)
 <br>
 
@@ -182,6 +181,7 @@ To refer to this work, please cite
 - This project was built using [Lightning-Hydra template](https://github.com/ashleve/lightning-hydra-template).
 - The original code of [TreeSat](https://git.tu-berlin.de/rsim/treesat_benchmark)
 - The transformer structures come from [timm](https://github.com/huggingface/pytorch-image-models)
+- The implementation of UT&T come from the [FLAIR 2 challenge repository](https://github.com/IGNF/FLAIR-2)
 - The implementation of SatMAE and ScaleMAE come from [USat](https://github.com/stanfordmlgroup/USat)
 - The Croma implementation comes from [Croma](https://github.com/antofuller/CROMA)
 - The Relative Positional Encoding implementation come from [iRPE](https://github.com/microsoft/Cream/tree/main/iRPE)
