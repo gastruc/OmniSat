@@ -27,7 +27,7 @@ We introduce OmniSat, a novel architecture that exploits the spatial alignment b
   
 | Dataset name  |             Modalities                   |      Labels         |     Link      
 | ------------- | ---------------------------------------- | ------------------- | ------------------- |
-| PASTIS-HD     | **SPOT 6-7 (1m)** + S1/S2 (30-140 / year)| Crop mapping (0.2m) |    [zenodo](https://zenodo.org/records/10908628)  |
+| PASTIS-HD     | **SPOT 6-7 (1m)** + S1/S2 (30-140 / year)| Crop mapping (0.2m) |    [huggingface](https://huggingface.co/datasets/IGNF/PASTIS-HD) or [zenodo](https://zenodo.org/records/10908628) |
 | TreeSatAI-TS  | Aerial (0.2m) + **S1/S2 (10-70 / year)** |   Forestry (60m)    |   [huggingface](https://huggingface.co/datasets/IGNF/TreeSatAI-Time-Series) |
 | FLAIR         |   aerial (0.2m) + S2 (20-114 / year)     |  Land cover (0.2m)  |  [huggingface](https://huggingface.co/datasets/IGNF/FLAIR) |
 
