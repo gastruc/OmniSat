@@ -40,20 +40,20 @@ We introduce OmniSat, a novel architecture that exploits the spatial alignment b
 
 We perform experiments with 100% and 10-20% of labels. See below, the F1 Score results on 100% of the training data with all modalities available:
 
-|   F1 Score    | UT&T | Scale-MAE | OmniSat (no pretraining) | OmniSat (with pretraining) |
-| ------------- | ---- | --------- | ------------------------ | -------------------------- |
-| PASTIS-HD     | 53.5 |   42.2    |           59.1           |          **69.9**          |
-| TreeSatAI-TS  | 56.7 |   60.4    |           73.3           |          **74.2**          |
-| FLAIR         | 48.8 |   70.0    |           70.0           |          **73.4**          |
+|   F1 Score    | UT&T | Scale-MAE |   DOFA   | OmniSat (no pretraining) | OmniSat (with pretraining) |
+| ------------- | ---- | --------- | -------- |------------------------- | -------------------------- |
+| PASTIS-HD     | 53.5 |   42.2    |   55.7   |          59.1            |          **69.9**          |
+| TreeSatAI-TS  | 56.7 |   60.4    |   71.3   |          73.3            |          **74.2**          |
+| FLAIR         | 48.8 |   70.0    | **74.9** |          70.0            |            73.4            |
 
 OmniSat also improves performance even when only one modality is available for inference.
 F1 Score results on 100% of the training data with only S2 data available:
 
-|   F1 Score    | UT&T | Scale-MAE | OmniSat (no pretraining) | OmniSat (with pretraining) |
-| ------------- | ---- | --------- | ------------------------ | -------------------------- |
-| PASTIS-HD     | 61.3 |   46.1    |           60.1           |          **70.8**          |
-| TreeSatAI-TS  | 57.0 |   31.5    |           49.7           |          **62.9**          |
-| FLAIR         | 62.0 |   61.0    |         **65.4**         |          **65.4**          |
+|   F1 Score    | UT&T | Scale-MAE | DOFA | OmniSat (no pretraining) | OmniSat (with pretraining) |
+| ------------- | ---- | --------- | -----|------------------------- | -------------------------- |
+| PASTIS-HD     | 61.3 |   46.1    | 53.4 |           60.1           |          **70.8**          |
+| TreeSatAI-TS  | 57.0 |   31.5    | 39.4 |           49.7           |          **62.9**          |
+| FLAIR         | 62.0 |   61.0    | 61.0 |         **65.4**         |          **65.4**          |
 
 
 
