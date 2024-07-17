@@ -1,4 +1,4 @@
-# OmniSat: Self-Supervised Modality Fusion for Earth Observation
+# OmniSat: Self-Supervised Modality Fusion for Earth Observation (ECCV 2024)
 
 [![python](https://img.shields.io/badge/-Python_3.8+-blue?logo=python&logoColor=white)](https://github.com/pre-commit/pre-commit)
 [![pytorch](https://img.shields.io/badge/PyTorch_2.2+-ee4c2c?logo=pytorch&logoColor=white)](https://pytorch.org/get-started/locally/)
@@ -168,7 +168,7 @@ To refer to this work, please cite
 @article{astruc2024omnisat,
   title={Omni{S}at: {S}elf-Supervised Modality Fusion for {E}arth Observation},
   author={Astruc, Guillaume and Gonthier, Nicolas and Mallet, Clement and Landrieu, Loic},
-  journal={arXiv preprint arXiv:2404.08351},
+  journal={ECCV},
   year={2024}
 }
 ```
