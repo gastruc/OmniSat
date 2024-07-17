@@ -33,7 +33,7 @@ We introduce OmniSat, a novel architecture that exploits the spatial alignment b
 
 
 <p align="center">
-  <img src="https://github.com/gastruc/OmniSat/assets/1902679/289c8ca5-c0fa-4c35-8a91-af827dac0509" width="500" height="250">
+  <img src="https://github.com/user-attachments/assets/18acbb19-6c90-4c9a-be05-0af24ded2052" width="500" height="250">
 </p>
 
 ### Results
@@ -62,7 +62,7 @@ F1 Score results on 100% of the training data with only S2 data available:
 We report the best performance of different models between TreeSatAI and TreeSatAI-TS, with pre-training and fine-tuning using 100% of labels. The area of the markers is proportional to the training time, broken down in pre-training and fine-tuning when applicable
 
 <p align="center">
-   <img src="Efficiency.png" width="350" height="250">
+   <img src="https://github.com/user-attachments/assets/0e6a378a-024a-4224-ad1d-fa7171df5adf" width="350" height="250">
 </p>
 
 ## Project Structure
