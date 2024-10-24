@@ -1,6 +1,8 @@
 import h5py
 import numpy as np
 import torch
+import os
+import glob
 
 def replace_nans_with_mean(batch_of_images):
     # Calculate the mean along the specified axis (axis=(2, 3) for temp, channels, height, width)
@@ -31,6 +33,15 @@ with open(data_dir + "test_filenames.lst", 'r') as file:
     lst_list += [line.strip() for line in file.readlines()]
 
 for file_name in lst_list:
+    if not(os.path.exists(data_dir + "sentinel/" + '.'.join(file_name.split('.')[:-1]) + ".h5")):
+        pattern = os.path.join(data_dir, "sentinel", '.'.join(file_name.split('.')[:-1]) + "_*.h5")
+        files = glob.glob(pattern)
+        
+        if len(files) == 1:
+            os.rename(files[0], data_dir + "sentinel/" + '.'.join(file_name.split('.')[:-1]) + ".h5")
+        else:
+            raise ValueError("File not found or multiple files found:", file_name)
+            
     with h5py.File(data_dir + "sentinel/" + '.'.join(file_name.split('.')[:-1]) + ".h5", 'r') as file:
         s1_asc = file["sen-1-asc-data"][:]
         s1_asc = replace_nans_with_mean(torch.tensor(s1_asc))
